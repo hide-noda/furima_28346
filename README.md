@@ -11,30 +11,29 @@
 | last_name        | string      | null: false                 |
 | family_name_kana | string      | null: false                 |
 | last_name_kana   | string      | null: false                 |
-| birth_year       | integer     | null: false                 |
-| birth_month      | integer     | null: false                 |
-| birth_day        | integer     | null: false                 |
+| birth_day        | date        | null: false                 |
+
 
 ### Association
 
 - has_many :items
-- has_one :buyers
+- has_one :buyer
 
 
 ## itemsテーブル
 
-| column           | type         | options                         |
-| ---------------- | ------------ | ------------------------------- |
-| image            | text         | null: false                     |
-| name             | string       | null: false                     |
-| text             | text         | null: false                     |
-| price            | integer      | null: false                     |
-| user             | references   | null: false, foreign_key: true  |
-| category         | references   | null: false, foreign_key: true  |
-| status           | references   | null: false, foreign_key: true  |
-| shipping_charge  | references   | null: false, foreign_key: true  |
-| delivery_area    | references   | null: false, foreign_kew: true  |
-| delivery_date    | references   | null: false, foreign_key: true  |
+| column              | type         | options                         |
+| ----------------    | ------------ | ------------------------------- |
+| image               | text         | null: false                     |
+| name                | string       | null: false                     |
+| text                | text         | null: false                     |
+| price               | integer      | null: false                     |
+| category_id         | integer      | null: false                     |
+| status_id           | integer      | null: false                     |
+| shipping_charge_id  | integer      | null: false                     |
+| delivery_area_id    | integer      | null: false                     |
+| delivery_date_id    | integer      | null: false                     |
+| user                | references   | null: false, foreign_key: true  |
 
 ### Association
 
@@ -50,14 +49,14 @@
 ## buyersテーブル
 
 | column   | type       | options                        |
-| -------- | ------     | ------------------------------ |
+| -------- | ---------- | ------------------------------ |
 | user     | references | null: false, foreign_key: true |
+| item     | references | null: false, foreign_key: true |
 
 ### Association
 
 belongs_to :user
 belongs_to :item
-has_one :card
 has_one :shipping_address
 
 
@@ -66,24 +65,13 @@ has_one :shipping_address
 | column        | type             | options                        |
 | ------------- | ---------------- | ------------------------------ |
 | buyer         | references       | null: false, foreign_key: true |
-| postal_code   | integer          | null: false                    |
-| prefecture    | references       | null: false, foreign_key: true |
+| postal_code   | string           | null: false                    |
+| prefecture_id | integer          | null: false                    |
 | city          | string           | null: false                    |
 | city_address  | string           | null: false                    |
 | building_name | string           |                                |
-| phone_number  | integer          | null: false                    |
+| phone_number  | string           | null: false                    |
 
-
-### Association
-
-belongs_to :buyer
-
-
-## cardテーブル
-
-| column | type     | options      |
-| ------ | -------- | ------------ |
-| price  | integer  | null: false  |
 
 ### Association
 
