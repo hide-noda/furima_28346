@@ -16,8 +16,7 @@
 ### Association
 
 - has_many :items
-- has_many :users_address
-- has_many :address, through: :users_address
+- has_one :buyer
 
 
 
@@ -39,7 +38,8 @@
 ### Association
 
 - belongs_to :user
-- has_one :address
+- has_one :shipping_address
+- has_one :buyer
 - belongs_to_active_hash :category
 - belongs_to_active_hash :status
 - belongs_to_active_hash :shipping_charge 
@@ -48,7 +48,22 @@
 
 
 
-## addressテーブル
+## buyers テーブル
+
+| column            | type           | options                        |
+| ----------------- | -------------- | ------------------------------ |
+| user              | references     | null: false, foreign_key: true |
+| item              | references     | null: false, foreign_key: true |
+| shipping_address  | references     | null: false, foreign_key: true |
+### Association
+
+- belongs_to :user
+- belongs_to :item
+- has_one :shipping_address
+
+
+
+## shipping_addressテーブル
 
 | column        | type             | options                        |
 | ------------- | ---------------- | ------------------------------ |
@@ -58,22 +73,10 @@
 | city_address  | string           | null: false                    |
 | building_name | string           |                                |
 | phone_number  | string           | null: false                    |
+| item          | references       | null: false, foreign_key: true |
+| buyer         | references       | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :items
-- has_many :users_address
-- has_many :users, trough: :users_address
+- belongs_to :buyers
 - belongs_to_active_hash :prefecture
-
-
-
-## users_addressテーブル
-
-| column      | type       | options                        |
-| ----------- | ---------- | ------------------------------ |
-| user        | references | null: false, foreign_key: true |
-| address     | references | null: false, foreign_key: true |
-
-### Association
-- belongs_to :user
-- belongs_to :address
