@@ -54,12 +54,11 @@
 | ----------------- | -------------- | ------------------------------ |
 | user              | references     | null: false, foreign_key: true |
 | item              | references     | null: false, foreign_key: true |
-| shipping_address  | references     | null: false, foreign_key: true |
+
 ### Association
 
 - belongs_to :user
 - belongs_to :item
-- has_one :shipping_address
 
 
 
@@ -77,6 +76,6 @@
 | buyer         | references       | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :items
-- belongs_to :buyers
+- belongs_to :item
+- belongs_to :buyer
 - belongs_to_active_hash :prefecture
