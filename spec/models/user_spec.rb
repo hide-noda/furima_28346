@@ -3,7 +3,6 @@ describe User do
   before do
     @user = FactoryBot.build(:user)
   end
-  
   describe 'ユーザー新規登録' do
     context '新規登録がうまくいくとき' do
       it "name,email,password,password_confirmation,family_name,last_name,family_name_kana,last_name_kana,birth_dayが存在すれば登録できる" do
@@ -25,9 +24,8 @@ describe User do
         expect(@user).to be_valid
       end
     end
-    
     context '新規登録がうまくいかないとき' do
-      it "nameが空だと登録できない"do
+      it "nameが空だと登録できない" do
         @user.name = ""
         @user.valid?
         expect(@user.errors.full_messages).to include("Name can't be blank")
@@ -86,7 +84,7 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include("Family name is invalid")
       end
-      it "last_nameが全角の漢字、カタカナ、ひらがなでないと登録できない"  do
+      it "last_nameが全角の漢字、カタカナ、ひらがなでないと登録できない" do
         @user.last_name = "aaa"
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name is invalid")
