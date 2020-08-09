@@ -3,6 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  has_many :items
+  has_one :buyer
   with_options presence: true do
     validates :name, :family_name, :last_name, :family_name_kana, :last_name_kana, :birth_day
   end
