@@ -10,10 +10,10 @@ class Item < ApplicationRecord
     belongs_to_active_hash :delivery_area
     belongs_to_active_hash :delivery_date
     with_options presence: true do
-      validates :image, :name, :text, :price, :category, :status, :shipping_charge, :delivery_area, :delivery_date
+      validates :image, :name, :text, :price, :category, :status, :shipping_charge, :delivery_area, :delivery_date, :user
     end
     with_options numericality: { other_than: 1 } do
-      validates :category, :status, :shipping_charge, :delivery_area, :delivery_date
+      validates :category_id, :status_id, :shipping_charge_id, :delivery_area_id, :delivery_date_id
     end
 
 
