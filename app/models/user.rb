@@ -13,7 +13,7 @@ class User < ApplicationRecord
     validates :family_name, :last_name
   end
   NAME_KANA_REGEX = /\A[ァ-ン]+\z/.freeze
-  with_options format: { with:  NAME_KANA_REGEX } do
+  with_options format: { with: NAME_KANA_REGEX } do
     validates :family_name_kana, :last_name_kana
   end
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze

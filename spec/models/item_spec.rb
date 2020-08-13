@@ -4,7 +4,6 @@ RSpec.describe Item, type: :model do
   before do
     @item = FactoryBot.build(:item)
     @item.image = fixture_file_upload('public/images/test_image.png')
-
   end
 
   describe '商品の保存' do
@@ -29,7 +28,7 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Category must be other than 1")
       end
-      it 'shipping_charge_idが1だと商品は保存できない'  do
+      it 'shipping_charge_idが1だと商品は保存できない' do
         @item.shipping_charge_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping charge must be other than 1")
@@ -55,7 +54,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
       end
       it 'priceが9,999,999円より高いと商品は保存できない' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
       end
