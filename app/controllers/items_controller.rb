@@ -20,9 +20,6 @@ class ItemsController < ApplicationController
     end
   end
 
-  def show
-  end
-
   private
 
   def move_to_index
