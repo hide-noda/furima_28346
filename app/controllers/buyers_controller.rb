@@ -10,15 +10,16 @@ class BuyersController < ApplicationController
     if shipping_address.valid?
       pay_item
       shipping_address.save
-      return redirect_to root_path
+      redirect_to root_path
     else
       render :index
     end
   end
 
   private
+
   def move_to_session
-    unless user_signed_in? 
+    unless user_signed_in?
       redirect_to new_user_session_path
     end
   end
@@ -40,12 +41,11 @@ class BuyersController < ApplicationController
     Payjp::Charge.create(
       amount: @item.price,
       card: order_params[:token],
-      currency:'jpy'
+      currency: 'jpy'
     )
   end
 
   def address_params
     params.permit(:postal_code, :delivery_area_id, :city, :city_address, :building_name, :phone_number, :item_id, :buyer_id).merge(user_id: current_user.id)
   end
-
 end
