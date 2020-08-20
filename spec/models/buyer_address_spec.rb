@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe BuyerAddress, type: :model do
   before do
     @shipping_address = FactoryBot.build(:buyer_address)
+    @seller = FactoryBot.build(:user)
+    @buyer = Buyer.new
   end
 
   describe '配送先の保存' do
