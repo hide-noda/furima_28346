@@ -61,3 +61,4 @@ RSpec.describe BuyerAddress, type: :model do
     end
   end
 end
+
