@@ -25,10 +25,10 @@
     <% if user_signed_in? && current_user.id == @item.user.id %>
       <%= link_to '商品の編集', edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
         <p class='or-text'>or</p>
-      <%= link_to '削除', "#", method: :delete, class:'item-destroy' %>
+      <%= link_to '削除', item_path(@item.id), method: :delete, class:'item-destroy' %>
     <% end %>
-    <% if user_signed_in? && current_user.id != @item.user.id && @item.buyer == nil %>
-      <%= link_to '購入画面に進む', item_path(item.id) ,class:"item-red-btn"%>
+    <% if current_user != @item.user && @item.buyer == nil %>
+      <%= link_to '購入画面に進む', item_buyers_path(@item.id), item_id: @item.id, class:"item-red-btn"%>
     <% end %>
       <div class="item-explain-box">
         <span><%= @item.text %></span>
